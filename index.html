@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Thiệp chúc mừng sinh nhật Soii-K từ guild CoHonCave"
+    />
+    <title>Happy Birthday Soii-K | CoHonCave</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="fireworks" aria-hidden="true"></canvas>
+
+    <div class="ambient" aria-hidden="true">
+      <span class="orb orb--one"></span>
+      <span class="orb orb--two"></span>
+      <span class="orb orb--three"></span>
+      <span class="petal petal--1">✦</span>
+      <span class="petal petal--2">✧</span>
+      <span class="petal petal--3">✦</span>
+      <span class="petal petal--4">✧</span>
+      <span class="petal petal--5">✦</span>
+    </div>
+
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="guild-mark" href="#home" aria-label="Về đầu trang">
+          <span class="guild-mark__icon">火</span>
+          <span>
+            <small>WHERE WINDS MEET</small>
+            <strong>CoHonCave</strong>
+          </span>
+        </a>
+
+        <div class="topbar__tag">
+          <span></span>
+          BIRTHDAY EVENT
+          <span></span>
+        </div>
+      </header>
+
+      <section class="hero" id="home">
+        <div class="hero__copy">
+          <div class="eyebrow"><span>✦</span> HÔM NAY GIANG HỒ CÓ HỶ SỰ <span>✦</span></div>
+          <p class="hero__kicker">Chúc mừng sinh nhật</p>
+          <h1 data-text="SOII-K">SOII-K</h1>
+          <p class="hero__subtitle">
+            Chúc đại hiệp tuổi mới <strong>vạn sự như ý</strong>, hành tẩu giang hồ luôn
+            gặp quý nhân, loot gì cũng đỏ và mỗi trận chiến đều có anh em
+            <strong>CoHonCave</strong> kề vai sát cánh.
+          </p>
+
+          <div class="hero__actions">
+            <button class="wish-button" id="openWish" type="button">
+              <span class="wish-button__shine"></span>
+              <span class="wish-button__icon">🎁</span>
+              MỞ LỜI CHÚC
+            </button>
+            <button class="firework-button" id="launchFireworks" type="button">
+              <span>✦</span> BẮN PHÁO HOA
+            </button>
+          </div>
+
+          <div class="mini-stats" aria-label="Lời chúc nhanh">
+            <div><strong>∞</strong><span>Niềm vui</span></div>
+            <i></i>
+            <div><strong>100%</strong><span>May mắn</span></div>
+            <i></i>
+            <div><strong>1</strong><span>Huyền thoại</span></div>
+          </div>
+        </div>
+
+        <div class="hero__art" aria-hidden="true">
+          <div class="moon">
+            <span class="moon__cloud moon__cloud--one"></span>
+            <span class="moon__cloud moon__cloud--two"></span>
+            <div class="moon__name">K</div>
+          </div>
+          <div class="mountain mountain--back"></div>
+          <div class="mountain mountain--front"></div>
+          <div class="swordsman">
+            <span class="swordsman__head"></span>
+            <span class="swordsman__body"></span>
+            <span class="swordsman__cape"></span>
+            <span class="swordsman__sword"></span>
+          </div>
+          <div class="lantern lantern--one"><span>福</span></div>
+          <div class="lantern lantern--two"><span>喜</span></div>
+          <p class="art-caption">Một tuổi mới · Một chương huyền thoại mới</p>
+        </div>
+      </section>
+
+      <section class="blessings" aria-label="Ba lời chúc dành cho Soii-K">
+        <article class="blessing-card">
+          <span class="blessing-card__number">01</span>
+          <div class="blessing-card__icon">⚔</div>
+          <h2>Chiến đâu thắng đó</h2>
+          <p>Mọi kèo đều thắng, mọi hành trình đều có những chiến hữu đáng tin bên cạnh.</p>
+        </article>
+        <article class="blessing-card blessing-card--featured">
+          <span class="blessing-card__number">02</span>
+          <div class="blessing-card__icon">✦</div>
+          <h2>Nhân phẩm vô cực</h2>
+          <p>Quà hiếm tự tìm đến, vận may luôn đầy túi và loot đỏ không bao giờ trượt.</p>
+        </article>
+        <article class="blessing-card">
+          <span class="blessing-card__number">03</span>
+          <div class="blessing-card__icon">☯</div>
+          <h2>Tiêu dao tự tại</h2>
+          <p>Tuổi mới bình an, rực rỡ và có thật nhiều chuyện vui ngoài đời lẫn trong game.</p>
+        </article>
+      </section>
+
+      <footer>
+        <p>GỬI TỪ NHỮNG NGƯỜI ANH EM</p>
+        <div class="footer__guild"><span>—</span> CoHonCave <span>—</span></div>
+        <small>Happy Birthday · Soii-K · 2026</small>
+      </footer>
+    </main>
+
+    <div class="wish-modal" id="wishModal" aria-hidden="true">
+      <div class="wish-modal__backdrop"></div>
+      <article class="scroll-card" role="dialog" aria-modal="true" aria-labelledby="wishTitle">
+        <button class="scroll-card__close" id="closeWish" type="button" aria-label="Đóng lời chúc">×</button>
+        <span class="scroll-card__seal">K</span>
+        <p class="scroll-card__label">BỨC THƯ TỪ COHONCAVE</p>
+        <h2 id="wishTitle">Gửi Soii-K,</h2>
+        <p>
+          Nhân ngày đại hiệp thăng thêm một level ngoài đời, chúc bạn luôn mạnh khỏe,
+          vui vẻ và giữ mãi nguồn năng lượng tuyệt vời của mình.
+        </p>
+        <p>
+          Mong những chuyến hành tẩu sắp tới đều ngập tiếng cười, những trận chiến đều
+          đáng nhớ, và dù gió có đưa ta đến phương nào, CoHonCave vẫn luôn là nơi anh em tụ hội.
+        </p>
+        <strong>Tuổi mới rực rỡ nhé, Soii-K! 🎂</strong>
+        <div class="scroll-card__sign">— Anh em CoHonCave —</div>
+      </article>
+    </div>
+
+    <div class="toast" id="toast" role="status">Pháo hoa đã được triệu hồi! ✨</div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
