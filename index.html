@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Thiệp chúc mừng sinh nhật Chú Gáp (a.k.a Chú Garf) từ guild CoHonTeam"
+      content="Thiệp chúc mừng sinh nhật bảng chủ Riku San từ guild CoHonTeam"
     />
-    <title>Happy Birthday Chú Gáp | CoHonTeam</title>
+    <title>Happy Birthday Riku San | CoHonTeam</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,32 +17,32 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <canvas id="fireworks" aria-hidden="true"></canvas>
+    <canvas id="confetti" aria-hidden="true"></canvas>
 
     <div class="ambient" aria-hidden="true">
-      <span class="orb orb--one"></span>
-      <span class="orb orb--two"></span>
-      <span class="orb orb--three"></span>
-      <span class="paw paw--1">🐾</span>
-      <span class="paw paw--2">🐾</span>
-      <span class="paw paw--3">🐾</span>
-      <span class="paw paw--4">🐾</span>
-      <span class="paw paw--5">🐾</span>
+      <span class="cloud cloud--1"></span>
+      <span class="cloud cloud--2"></span>
+      <span class="cloud cloud--3"></span>
+      <span class="carrot carrot--1">🥕</span>
+      <span class="carrot carrot--2">🥕</span>
+      <span class="carrot carrot--3">🥕</span>
+      <span class="carrot carrot--4">🥕</span>
+      <span class="carrot carrot--5">🥕</span>
     </div>
 
     <main class="page-shell">
       <header class="topbar">
         <a class="guild-mark" href="#home" aria-label="Về đầu trang">
-          <span class="guild-mark__icon">🐾</span>
+          <span class="guild-mark__icon">🏇</span>
           <span>
-            <small>WHERE WINDS MEET</small>
+            <small>UMAMUSUME · TWINKLE SERIES</small>
             <strong>CoHonTeam</strong>
           </span>
         </a>
 
         <div class="topbar__tag">
           <span></span>
-          SINH NHẬT CHÚ GÁP
+          SINH NHẬT BẢNG CHỦ
           <span></span>
         </div>
       </header>
@@ -50,209 +50,247 @@
       <!-- 1. HERO -->
       <section class="hero" id="home">
         <div class="hero__copy">
-          <div class="eyebrow"><span>🐾</span> <b id="mondayLine">HÔM NAY KHÔNG PHẢI THỨ HAI</b> <span>🐾</span></div>
+          <div class="eyebrow"><span>🥕</span> <b id="dayLine">HÔM NAY LÀ NGÀY CỦA BẢNG CHỦ</b> <span>🥕</span></div>
           <p class="hero__kicker">Chúc mừng sinh nhật</p>
-          <h1>CHÚ GÁP</h1>
-          <p class="hero__alias">a.k.a <strong>Chú Garf</strong> · mèo cam của CoHonTeam</p>
+          <h1>RIKU SAN</h1>
+          <p class="hero__alias">Bảng chủ <strong>CoHonTeam</strong> · trainer cứng của Umamusume</p>
           <p class="hero__subtitle">
-            Chúc chú mèo cam đáng yêu nhất guild tuổi mới
-            <strong>ăn ngon, ngủ kỹ, chơi hết mình</strong>. Cả năm không gặp thứ Hai buồn,
-            và trận nào cũng có anh em <strong>CoHonTeam</strong> kề vai.
+            Chúc chị tuổi mới <strong>về nhất mọi đường đua</strong>: sức khỏe dẻo dai, tinh
+            thần luôn top mood, và mỗi lần quay gacha đều nổ SSR.
           </p>
 
           <div class="hero__actions">
             <button class="wish-button" id="openWish" type="button">
               <span class="wish-button__shine"></span>
               <span class="wish-button__icon">🎁</span>
-              MỞ THIỆP
+              MỞ THƯ CHÚC
             </button>
-            <button class="candle-button" id="blowCandles" type="button">
-              <span>🕯️</span> <b id="blowLabel">THỔI NẾN</b>
+            <button class="ghost-button" id="toRace" type="button">
+              <span>🏁</span> VÀO CUỘC ĐUA
             </button>
           </div>
 
           <div class="mini-stats" aria-label="Chỉ số sinh nhật">
-            <div><strong>∞</strong><span>Lasagna</span></div>
+            <div><strong>1着</strong><span>Hạng về đích</span></div>
             <i></i>
-            <div><strong>0</strong><span>Thứ Hai</span></div>
+            <div><strong>SSR</strong><span>Độ hiếm</span></div>
             <i></i>
-            <div><strong>1</strong><span>Chú Gáp duy nhất</span></div>
+            <div><strong>∞</strong><span>Cà rốt</span></div>
           </div>
         </div>
 
         <div class="hero__art">
           <p class="bubble" id="bubble" role="status"></p>
 
-          <button class="pardy" id="pardy" type="button" aria-label="Bấm vào Garfield để nghe câu thoại">
-            <img src="assets/garfield-happy-birthday.gif" alt="Garfield đội mũ tiệc: PARDY! Happy Birthday!" width="299" height="264" />
+          <button class="photo" id="photo" type="button" aria-label="Bấm vào ảnh để nghe lời chúc">
+            <img src="assets/uma-birthday-party.webp" alt="Nhân vật Umamusume đội mũ sinh nhật trong bữa tiệc" width="438" height="480" />
+            <b>Happy Birthday, Riku-san!</b>
           </button>
-          <p class="pardy__hint">(bấm vào Garf thử xem)</p>
-
-          <img class="dance-reward" id="danceReward" src="assets/garfield-dance.gif" alt="" width="480" height="480" aria-hidden="true" />
-
-          <div class="cake" id="cake" aria-hidden="true">
-            <div class="cake__candles" id="candles">
-              <span class="candle"><i class="flame"></i></span>
-              <span class="candle"><i class="flame"></i></span>
-              <span class="candle"><i class="flame"></i></span>
-            </div>
-            <span class="cake__flag">Lv.<b data-age>??</b></span>
-            <div class="lasagna">
-              <span class="lasagna__layer lasagna__layer--cheese"></span>
-              <span class="lasagna__layer lasagna__layer--sauce"></span>
-              <span class="lasagna__layer lasagna__layer--pasta"></span>
-              <span class="lasagna__layer lasagna__layer--sauce"></span>
-              <span class="lasagna__layer lasagna__layer--pasta"></span>
-            </div>
-            <span class="cake__plate"></span>
-          </div>
-
-          <p class="art-caption" id="artCaption">Ước đi Gáp, rồi thổi nến!</p>
+          <p class="photo__hint">(bấm vào ảnh thử xem)</p>
         </div>
       </section>
 
-      <!-- 2. HỒ SƠ NHÂN VẬT -->
+      <!-- 2. CUỘC ĐUA -->
+      <section class="race" id="race" aria-labelledby="raceTitle">
+        <div class="section-head">
+          <p>✦ TWINKLE SERIES · BIRTHDAY CUP ✦</p>
+          <h2 id="raceTitle">Cuộc đua sinh nhật</h2>
+        </div>
+
+        <div class="course" id="course">
+          <div class="course__finish"><span>🏁</span></div>
+
+          <div class="lane">
+            <span class="lane__no">1</span>
+            <div class="runner runner--riku" id="runnerRiku">
+              <img src="assets/uma-cheer.webp" alt="" width="368" height="480" loading="lazy" />
+              <b>RIKU SAN</b>
+            </div>
+          </div>
+          <div class="lane">
+            <span class="lane__no">2</span>
+            <div class="runner runner--rival" id="runnerA"><i>😤</i><b>DEADLINE</b></div>
+          </div>
+          <div class="lane">
+            <span class="lane__no">3</span>
+            <div class="runner runner--rival" id="runnerB"><i>😩</i><b>THỨ HAI</b></div>
+          </div>
+        </div>
+
+        <div class="race__bar">
+          <button class="race-button" id="startRace" type="button">🚩 XUẤT PHÁT</button>
+          <p id="raceStatus">Bảng chủ đang khởi động ở cổng số 1…</p>
+        </div>
+
+        <div class="race-result" id="raceResult" aria-hidden="true">
+          <img src="assets/uma-1st-place.webp" alt="Về nhất, hạng 1着" width="248" height="480" loading="lazy" />
+          <div>
+            <h3>1着 — RIKU SAN VỀ NHẤT!</h3>
+            <p>Deadline và Thứ Hai bị bỏ lại phía sau. Cả khán đài CoHonTeam đứng dậy hò hét, confetti bay đầy trời.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. HỒ SƠ -->
       <section class="profile" aria-labelledby="profileTitle">
         <div class="section-head">
-          <p>✦ HỒ SƠ NHÂN VẬT ✦</p>
-          <h2 id="profileTitle">Chú Gáp là ai?</h2>
+          <p>✦ THẺ NHÂN VẬT ✦</p>
+          <h2 id="profileTitle">Bảng chủ Riku San</h2>
         </div>
 
         <div class="profile__grid">
           <article class="profile__card">
             <div class="profile__avatar">
-              <!-- Có ảnh Gáp thì thay src bằng ảnh đó, ví dụ assets/gap.jpg -->
-              <img src="assets/garfield-smug.gif" alt="Ảnh đại diện Chú Gáp" width="1060" height="952" />
-              <span class="profile__level">Lv.<b data-age>??</b></span>
+              <!-- Có ảnh của chị ấy thì thay src bằng ảnh đó, ví dụ assets/riku.jpg -->
+              <img src="assets/uma-cheer.webp" alt="Ảnh đại diện Riku San" width="368" height="480" loading="lazy" />
+              <span class="profile__rank">SSR</span>
             </div>
-            <h3>Chú Gáp</h3>
-            <p class="profile__alias">a.k.a Chú Garf · Guild CoHonTeam</p>
-            <span class="profile__class">Class: Mèo cam thượng hạng</span>
+            <h3>Riku San</h3>
+            <p class="profile__alias">Bảng chủ · CoHonTeam</p>
+            <span class="profile__class">Class: Trainer kiêm Uma số 1</span>
           </article>
 
           <article class="profile__sheet">
             <dl class="profile__rows">
-              <div><dt>Tên trong game</dt><dd>GarfXX</dd></div>
-              <div><dt>Tuổi mới</dt><dd><b class="fill-me" data-age>??</b> tuổi · sinh năm 1990</dd></div>
-              <div><dt>Kỹ năng đặc biệt</dt><dd>Đớp 😼</dd></div>
-              <div><dt>Câu cửa miệng</dt><dd>“Anh thích skin này”</dd></div>
-              <div><dt>Kỷ niệm với guild</dt><dd>Chuyên gia kéo boss cho newbie: dặn “cứ đứng sau chú”, rồi đớp boss nhanh tới mức newbie chưa kịp bấm skill nào đã nhận quà 🎁</dd></div>
+              <div><dt>Tên trong game</dt><dd><span class="fill-me">Điền tên nhân vật của chị ấy</span></dd></div>
+              <div><dt>Guild</dt><dd>CoHonTeam</dd></div>
+              <div><dt>Vai trò</dt><dd>Bảng chủ, người cầm cờ mọi kèo</dd></div>
+              <div><dt>Game tủ</dt><dd>Umamusume: Pretty Derby</dd></div>
+              <div><dt>Câu cửa miệng</dt><dd><span class="fill-me">Điền câu chị ấy hay nói</span></dd></div>
             </dl>
 
             <div class="stats" id="stats">
-              <p class="stats__title">Chỉ số của Gáp</p>
-              <div class="stat" style="--value: 99%"><span>Ham ăn</span><i><em></em></i><b>99%</b></div>
-              <div class="stat" style="--value: 100%"><span>Ngủ ngon</span><i><em></em></i><b>100%</b></div>
-              <div class="stat" style="--value: 100%"><span>Đáng yêu</span><i><em></em></i><b>100%</b></div>
-              <div class="stat stat--over" style="--value: 100%"><span>Ghét thứ Hai</span><i><em></em></i><b>101%</b></div>
+              <p class="stats__title">Chỉ số huấn luyện</p>
+              <div class="stat" style="--value: 92%"><span>Tốc độ</span><i><em></em></i><b>A</b></div>
+              <div class="stat" style="--value: 88%"><span>Sức bền</span><i><em></em></i><b>A</b></div>
+              <div class="stat" style="--value: 80%"><span>Sức mạnh</span><i><em></em></i><b>B</b></div>
+              <div class="stat stat--top" style="--value: 97%"><span>Gan lì</span><i><em></em></i><b>S</b></div>
+              <div class="stat stat--top" style="--value: 99%"><span>Trí tuệ</span><i><em></em></i><b>S</b></div>
+              <p class="aptitude">
+                <span>芝 Cỏ <b>S</b></span>
+                <span>Mile <b>A</b></span>
+                <span>Dẫn đầu <b>S</b></span>
+                <span>Vận may gacha <b>SS</b></span>
+              </p>
             </div>
           </article>
         </div>
       </section>
 
-      <!-- 3. BA LỜI CHÚC -->
-      <section class="blessings" aria-label="Ba lời chúc dành cho Chú Gáp">
+      <!-- 4. BA LỜI CHÚC -->
+      <section class="blessings" aria-label="Ba lời chúc dành cho bảng chủ">
         <article class="blessing-card">
           <span class="blessing-card__number">01</span>
-          <img class="blessing-card__gif" src="assets/garfield-lasagna.gif" alt="Garfield ôm khay lasagna" width="480" height="480" loading="lazy" />
-          <h2>Ăn mãi không béo</h2>
-          <p>Tuổi mới Gáp ăn gì cũng ngon, gọi món nào cũng trúng, như Garf gặp đúng khay lasagna vừa ra lò.</p>
+          <img class="blessing-card__gif" src="assets/uma-thumbsup.webp" alt="Nhân vật Umamusume giơ ngón tay cái" width="360" height="360" loading="lazy" />
+          <h2>Thắng mọi URA Finals</h2>
+          <p>Việc gì tới tay chị cũng về đích đẹp, kèo nào cũng chốt gọn, năm nay toàn tin vui.</p>
         </article>
         <article class="blessing-card blessing-card--featured">
           <span class="blessing-card__number">02</span>
-          <img class="blessing-card__gif blessing-card__gif--framed" src="assets/garfield-belly-dance.gif" alt="Garfield lắc bụng nhảy múa" width="480" height="264" loading="lazy" />
-          <h2>Nhạc lên là quẩy</h2>
-          <p>Tuổi mới Gáp lúc nào cũng vui như Garf lắc bụng, buồn gì cũng quên, kèo nào cũng quẩy hết mình cùng anh em.</p>
+          <img class="blessing-card__gif" src="assets/uma-sparkle.webp" alt="Nhân vật Umamusume lấp lánh" width="480" height="480" loading="lazy" />
+          <h2>Gacha nổ SSR</h2>
+          <p>Mỗi lần quay đều ra thẻ ước, nhân phẩm đầy bình, đi đâu cũng gặp quý nhân.</p>
         </article>
         <article class="blessing-card">
           <span class="blessing-card__number">03</span>
-          <img class="blessing-card__gif" src="assets/garfield-monday.gif" alt="Garfield: I hate Mondays" width="360" height="360" loading="lazy" />
-          <h2>Cả năm không có thứ Hai</h2>
-          <p>Toàn ngày vui, việc gì cũng nhẹ, thứ Hai nào ghé qua cũng phải xếp hàng sau Gáp.</p>
+          <img class="blessing-card__gif" src="assets/uma-dance.webp" alt="Nhân vật Umamusume nhảy múa" width="200" height="200" loading="lazy" />
+          <h2>Training không tụt mood</h2>
+          <p>Ngày nào cũng đủ năng lượng, thể lực xanh, tinh thần luôn ở mức tốt nhất.</p>
         </article>
       </section>
 
-      <!-- 4. NHIỆM VỤ PHỤ: NÚT THỨ HAI CHẠY TRỐN -->
-      <section class="mission" aria-labelledby="missionTitle">
-        <div class="mission__copy">
-          <p class="mission__label">NHIỆM VỤ PHỤ · ĐỘ KHÓ: KHÔNG THỂ</p>
-          <h2 id="missionTitle">Gọi Chú Gáp dậy đi làm thứ Hai</h2>
-          <p class="mission__status" id="missionStatus">Thử bấm nút xem nào…</p>
+      <!-- 5. GACHA -->
+      <section class="gacha" aria-labelledby="gachaTitle">
+        <div class="gacha__copy">
+          <p class="gacha__label">BIRTHDAY GACHA · TỈ LỆ SSR 100%</p>
+          <h2 id="gachaTitle">Quay một phát lấy may</h2>
+          <p class="gacha__status" id="gachaStatus">Hôm nay guild đã chỉnh tỉ lệ riêng cho bảng chủ.</p>
+          <button class="gacha-button" id="pullGacha" type="button">🎟️ QUAY GACHA</button>
+          <p class="gacha__count" id="gachaCount">Đã quay: 0 lần</p>
         </div>
-        <div class="mission__arena" id="missionArena">
-          <button class="monday-button" id="mondayButton" type="button">⏰ DẬY ĐI GÁP ƠI</button>
+
+        <div class="gacha__stage" id="gachaStage">
+          <div class="gacha__card">
+            <div class="gacha__back"><span>★</span><small>CoHonTeam</small></div>
+            <div class="gacha__front">
+              <img src="assets/uma-gacha-card.webp" alt="Thẻ SSR" width="230" height="456" loading="lazy" />
+            </div>
+          </div>
+          <img class="gacha__react" src="assets/uma-umazing.webp" alt="" width="320" height="254" loading="lazy" />
         </div>
       </section>
 
-      <!-- 5. BỨC TƯỜNG LỜI CHÚC -->
+      <!-- 6. BỨC TƯỜNG LỜI CHÚC -->
       <section class="wall" aria-labelledby="wallTitle">
         <div class="section-head">
+          <img class="wall__deco" src="assets/uma-cheer-duo.webp" alt="" width="320" height="266" loading="lazy" />
           <p>✦ BỨC TƯỜNG LỜI CHÚC ✦</p>
-          <h2 id="wallTitle">Anh em CoHonTeam gửi Gáp</h2>
+          <h2 id="wallTitle">Anh em CoHonTeam gửi bảng chủ</h2>
         </div>
 
         <!-- Mỗi thành viên một tờ note: sửa lời chúc và tên bên dưới -->
         <div class="wall__notes">
           <figure class="note">
-            <blockquote>Tuổi mới bớt ngủ gật lúc đi kèo nha Gáp. À mà thôi, sinh nhật mà, cứ ngủ!</blockquote>
+            <blockquote>Chúc bảng chủ tuổi mới chạy đâu thắng đó, mà nhớ ngủ sớm chứ đừng cày tới sáng nha!</blockquote>
             <figcaption>— Niel</figcaption>
           </figure>
           <figure class="note">
-            <blockquote>Chúc Gáp năm nay loot toàn đồ đỏ, ăn toàn món ngon.</blockquote>
-            <figcaption>— Riku</figcaption>
-          </figure>
-          <figure class="note">
-            <blockquote>Mãi là con mèo cam đáng yêu nhất guild nhé!</blockquote>
+            <blockquote>Chúc chị năm nay quay gacha phát nào cũng nổ, hòm đồ lúc nào cũng đầy.</blockquote>
             <figcaption>— Con Mèo</figcaption>
           </figure>
           <figure class="note">
-            <blockquote>Sinh nhật vui vẻ, nhớ khao anh em một khay lasagna đó.</blockquote>
+            <blockquote>Sinh nhật vui vẻ! Mong chị mãi khỏe để còn dẫn team đi cày dài dài.</blockquote>
             <figcaption>— Soiik</figcaption>
           </figure>
           <figure class="note">
-            <blockquote>Chúc chú khỏe mạnh, vui vẻ, đi đâu cũng có người thương.</blockquote>
+            <blockquote>Chúc bảng chủ tuổi mới nhiều niềm vui, ít deadline, và cà rốt ăn không hết.</blockquote>
             <figcaption>— Con Cá</figcaption>
           </figure>
           <figure class="note">
-            <blockquote>Thêm tuổi mới, thêm nhiều kèo vui, bớt hẳn thứ Hai.</blockquote>
+            <blockquote>Chúc chị luôn giữ được tinh thần top mood, ngoài đời cũng về nhất như trong game.</blockquote>
             <figcaption>— Joywin</figcaption>
+          </figure>
+          <figure class="note">
+            <blockquote>Bảng chủ thêm tuổi mới, chúc chị thật nhiều sức khỏe và lúc nào cũng vui.</blockquote>
+            <figcaption>— Chú Gáp</figcaption>
           </figure>
         </div>
       </section>
 
       <footer>
         <p>GỬI TỪ NHỮNG NGƯỜI ANH EM</p>
-        <div class="footer__guild"><span>🐾</span> CoHonTeam <span>🐾</span></div>
-        <small>Happy Birthday · Chú Gáp · 2026</small>
+        <div class="footer__guild"><span>🥕</span> CoHonTeam <span>🥕</span></div>
+        <small>Happy Birthday · Riku San · 2026</small>
       </footer>
     </main>
 
     <div class="wish-modal" id="wishModal" aria-hidden="true">
       <div class="wish-modal__backdrop"></div>
       <article class="letter" role="dialog" aria-modal="true" aria-labelledby="wishTitle">
-        <button class="letter__close" id="closeWish" type="button" aria-label="Đóng thiệp">×</button>
-        <span class="letter__seal">🐾</span>
-        <img class="letter__gif" src="assets/garfield-wave.gif" alt="" width="480" height="384" />
-        <p class="letter__label">THIỆP TỪ COHONTEAM</p>
-        <h2 id="wishTitle">Gửi Chú Gáp,</h2>
+        <button class="letter__close" id="closeWish" type="button" aria-label="Đóng thư chúc">×</button>
+        <span class="letter__seal">🏆</span>
+        <img class="letter__gif" src="assets/uma-love-sign.webp" alt="" width="330" height="445" loading="lazy" />
+        <p class="letter__label">THƯ TỪ COHONTEAM</p>
+        <h2 id="wishTitle">Gửi Riku-san,</h2>
         <p>
-          Nhân ngày Chú Gáp chính thức lên thêm một level ngoài đời, anh em CoHonTeam chúc chú
-          tuổi mới thật khỏe, thật vui, ăn gì cũng ngon và ngủ lúc nào cũng say như Garfield
-          sau bữa lasagna.
+          Nhân ngày bảng chủ chính thức lên thêm một level ngoài đời, cả guild chúc chị
+          thật nhiều sức khỏe, tuổi mới luôn vui, làm gì cũng thuận và mỗi ngày đều có
+          lý do để cười.
         </p>
         <p>
-          Cảm ơn Gáp vì luôn là mảnh ghép lầy lội mà đáng yêu của guild. Mong năm nay trận nào
-          cũng thắng, lần loot nào cũng đỏ, và thứ Hai có đến thì cũng không làm Gáp mất vui.
+          Cảm ơn chị vì đã luôn là người cầm cờ, rủ anh em vào kèo và giữ cho CoHonTeam
+          lúc nào cũng rộn ràng. Mong năm nay đường đua của chị toàn về nhất, gacha nổ
+          SSR và không có deadline nào đuổi kịp.
         </p>
-        <strong>Sinh nhật vui vẻ nhé, Chú Gáp! 🎂</strong>
+        <strong>Sinh nhật vui vẻ nhé, bảng chủ! 🎂</strong>
         <div class="letter__sign">— Anh em CoHonTeam —</div>
       </article>
     </div>
 
     <div class="nap" id="nap" aria-hidden="true">
-      <img src="assets/garfield-lasagna.gif" alt="" width="480" height="480" />
-      <p>Chú Gáp ăn no, đang ngủ trưa… <span>Zzz</span></p>
-      <small>Chạm hoặc di chuột để đánh thức</small>
+      <img src="assets/uma-rest.webp" alt="" width="433" height="480" />
+      <p>Bảng chủ đang nghỉ giữa hiệp… <span>Zzz</span></p>
+      <small>Chạm hoặc di chuột để quay lại đường đua</small>
     </div>
 
     <div class="toast" id="toast" role="status"></div>

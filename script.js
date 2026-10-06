@@ -1,22 +1,22 @@
-// ===== Thông tin của Gáp =====
-const GAP_BIRTH_YEAR = 1990;
-const GAP_AGE = 2026 - GAP_BIRTH_YEAR;
-
-const canvas = document.querySelector("#fireworks");
+const canvas = document.querySelector("#confetti");
 const ctx = canvas.getContext("2d");
 const wishModal = document.querySelector("#wishModal");
 const openWish = document.querySelector("#openWish");
 const closeWish = document.querySelector("#closeWish");
-const blowButton = document.querySelector("#blowCandles");
-const blowLabel = document.querySelector("#blowLabel");
-const cake = document.querySelector("#cake");
-const danceReward = document.querySelector("#danceReward");
-const artCaption = document.querySelector("#artCaption");
-const pardy = document.querySelector("#pardy");
+const toRace = document.querySelector("#toRace");
+const course = document.querySelector("#course");
+const startRace = document.querySelector("#startRace");
+const raceStatus = document.querySelector("#raceStatus");
+const raceResult = document.querySelector("#raceResult");
+const runnerRiku = document.querySelector("#runnerRiku");
+const runnerA = document.querySelector("#runnerA");
+const runnerB = document.querySelector("#runnerB");
+const photo = document.querySelector("#photo");
 const bubble = document.querySelector("#bubble");
-const missionArena = document.querySelector("#missionArena");
-const mondayButton = document.querySelector("#mondayButton");
-const missionStatus = document.querySelector("#missionStatus");
+const pullGacha = document.querySelector("#pullGacha");
+const gachaStage = document.querySelector("#gachaStage");
+const gachaStatus = document.querySelector("#gachaStatus");
+const gachaCount = document.querySelector("#gachaCount");
 const stats = document.querySelector("#stats");
 const nap = document.querySelector("#nap");
 const toast = document.querySelector("#toast");
@@ -28,20 +28,15 @@ let animationFrame;
 let toastTimer;
 let bubbleTimer;
 
-const colors = ["#ff9a1f", "#ffd15c", "#fff3dc", "#ff6b3d", "#ffb4c2", "#ffe08a"];
+const colors = ["#ff6fa5", "#ffc53a", "#3d8fe0", "#4fae63", "#ffffff", "#ff9f43"];
 
-/* ---------- Tuổi & dòng thứ Hai ---------- */
-
-document.querySelectorAll("[data-age]").forEach((el) => {
-  el.textContent = GAP_AGE ?? "??";
-  if (GAP_AGE) el.classList.remove("fill-me");
-});
+/* ---------- Dòng chữ theo thứ trong tuần ---------- */
 
 if (new Date().getDay() === 1) {
-  document.querySelector("#mondayLine").textContent = "HÔM NAY LÀ THỨ HAI, NHƯNG ĐƯỢC MIỄN GHÉT";
+  document.querySelector("#dayLine").textContent = "HÔM NAY LÀ THỨ HAI, NHƯNG BẢNG CHỦ ĐƯỢC NGHỈ";
 }
 
-/* ---------- Pháo hoa ---------- */
+/* ---------- Confetti ---------- */
 
 function resizeCanvas() {
   const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -53,74 +48,62 @@ function resizeCanvas() {
 }
 
 class Particle {
-  constructor(x, y, color, angle, speed, isPaw = false) {
+  constructor(x, y, color, angle, speed, isCarrot = false) {
     this.x = x;
     this.y = y;
     this.color = color;
-    this.isPaw = isPaw;
+    this.isCarrot = isCarrot;
     this.velocityX = Math.cos(angle) * speed;
     this.velocityY = Math.sin(angle) * speed;
-    this.gravity = isPaw ? 0.035 : 0.055;
-    this.friction = 0.986;
+    this.gravity = isCarrot ? 0.04 : 0.07;
+    this.friction = 0.985;
     this.alpha = 1;
-    this.decay = isPaw ? 0.008 : 0.009 + Math.random() * 0.008;
-    this.size = isPaw ? 14 + Math.random() * 8 : 1.4 + Math.random() * 2.2;
+    this.decay = isCarrot ? 0.007 : 0.008 + Math.random() * 0.007;
+    this.width = 4 + Math.random() * 5;
+    this.height = 7 + Math.random() * 7;
+    this.size = 14 + Math.random() * 8;
     this.rotation = Math.random() * Math.PI;
-    this.trail = [];
+    this.spin = (Math.random() - 0.5) * 0.3;
   }
 
   update() {
-    this.trail.push({ x: this.x, y: this.y });
-    if (this.trail.length > 4) this.trail.shift();
     this.velocityX *= this.friction;
     this.velocityY = this.velocityY * this.friction + this.gravity;
     this.x += this.velocityX;
     this.y += this.velocityY;
-    this.rotation += 0.03;
+    this.rotation += this.spin;
     this.alpha -= this.decay;
   }
 
   draw() {
     ctx.save();
     ctx.globalAlpha = Math.max(this.alpha, 0);
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rotation);
 
-    if (this.isPaw) {
-      ctx.translate(this.x, this.y);
-      ctx.rotate(this.rotation);
+    if (this.isCarrot) {
       ctx.font = `${this.size}px serif`;
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText("🐾", 0, 0);
-      ctx.restore();
-      return;
+      ctx.fillText("🥕", 0, 0);
+    } else {
+      ctx.fillStyle = this.color;
+      ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
     }
 
-    ctx.strokeStyle = this.color;
-    ctx.fillStyle = this.color;
-    ctx.shadowBlur = 10;
-    ctx.shadowColor = this.color;
-    ctx.beginPath();
-    const start = this.trail[0] || this;
-    ctx.moveTo(start.x, start.y);
-    ctx.lineTo(this.x, this.y);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
     ctx.restore();
   }
 }
 
-function createBurst(x, y, count = 72) {
-  const selected = colors[Math.floor(Math.random() * colors.length)];
+function createBurst(x, y, count = 70) {
   for (let i = 0; i < count; i += 1) {
-    const angle = (Math.PI * 2 * i) / count + Math.random() * 0.09;
-    const speed = 2.2 + Math.random() * 5.2;
-    const color = Math.random() > 0.76 ? colors[Math.floor(Math.random() * colors.length)] : selected;
+    const angle = (Math.PI * 2 * i) / count + Math.random() * 0.1;
+    const speed = 2 + Math.random() * 5.5;
+    const color = colors[Math.floor(Math.random() * colors.length)];
     particles.push(new Particle(x, y, color, angle, speed));
   }
   for (let i = 0; i < 5; i += 1) {
-    particles.push(new Particle(x, y, selected, Math.random() * Math.PI * 2, 1.5 + Math.random() * 3, true));
+    particles.push(new Particle(x, y, "#ff9f43", Math.random() * Math.PI * 2, 1.5 + Math.random() * 3, true));
   }
   animateParticles();
 }
@@ -147,17 +130,17 @@ function animateParticles() {
   animationFrame = requestAnimationFrame(animate);
 }
 
-function fireworkShow() {
+function confettiShow() {
   const positions = [
-    [0.2, 0.28],
+    [0.2, 0.3],
     [0.5, 0.2],
-    [0.78, 0.31],
-    [0.34, 0.48],
-    [0.68, 0.5],
+    [0.8, 0.32],
+    [0.34, 0.5],
+    [0.68, 0.48],
   ];
 
   positions.forEach(([x, y], index) => {
-    window.setTimeout(() => createBurst(window.innerWidth * x, window.innerHeight * y), index * 240);
+    window.setTimeout(() => createBurst(window.innerWidth * x, window.innerHeight * y), index * 220);
   });
 }
 
@@ -165,46 +148,84 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add("is-visible");
   window.clearTimeout(toastTimer);
-  toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2600);
+  toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2800);
 }
 
-/* ---------- Thổi nến ---------- */
+/* ---------- Cuộc đua: bảng chủ luôn về nhất ---------- */
 
-function toggleCandles() {
-  const blown = !cake.classList.contains("is-blown");
-  cake.classList.toggle("is-blown", blown);
-  danceReward.classList.toggle("is-visible", blown);
+const RACE_MS = 2600;
+let racing = false;
 
-  if (blown) {
-    blowLabel.textContent = "THẮP LẠI NẾN";
-    artCaption.textContent = "Điều ước của Gáp đã bay tới vũ trụ lasagna ✨";
-    fireworkShow();
-    showToast("Chú Gáp đã ước xong! 🎉");
-  } else {
-    blowLabel.textContent = "THỔI NẾN";
-    artCaption.textContent = "Ước đi Gáp, rồi thổi nến!";
-  }
+function resetRace() {
+  [runnerRiku, runnerA, runnerB].forEach((runner) => {
+    runner.style.transition = "none";
+    runner.style.left = "";
+  });
+  course.classList.remove("is-racing");
+  raceResult.classList.remove("is-visible");
+  raceResult.setAttribute("aria-hidden", "true");
+  // ép trình duyệt vẽ lại trước khi bật transition
+  void course.offsetWidth;
+  [runnerRiku, runnerA, runnerB].forEach((runner) => {
+    runner.style.transition = "";
+  });
 }
 
-blowButton.addEventListener("click", toggleCandles);
-cake.addEventListener("click", toggleCandles);
+function runRace() {
+  if (racing) return;
+  racing = true;
+  resetRace();
 
-/* ---------- Garf nói gì đó về Gáp ---------- */
+  startRace.disabled = true;
+  startRace.textContent = "🏃 ĐANG CHẠY…";
+  raceStatus.textContent = "Cổng mở! Bảng chủ bứt tốc ngay từ khúc cua đầu tiên…";
+  course.classList.add("is-racing");
+
+  const finish = course.clientWidth - 110;
+  runnerRiku.style.transitionDuration = `${RACE_MS}ms`;
+  runnerA.style.transitionDuration = `${RACE_MS + 700}ms`;
+  runnerB.style.transitionDuration = `${RACE_MS + 1100}ms`;
+
+  window.requestAnimationFrame(() => {
+    runnerRiku.style.left = `${finish}px`;
+    runnerA.style.left = `${finish - 40}px`;
+    runnerB.style.left = `${finish - 80}px`;
+  });
+
+  window.setTimeout(() => {
+    course.classList.remove("is-racing");
+    raceResult.classList.add("is-visible");
+    raceResult.setAttribute("aria-hidden", "false");
+    raceStatus.textContent = "Về nhất! Deadline với Thứ Hai còn đang thở dốc phía sau.";
+    startRace.disabled = false;
+    startRace.textContent = "🔁 ĐUA LẠI";
+    racing = false;
+    confettiShow();
+    showToast("1着 — Chúc mừng sinh nhật bảng chủ! 🎉");
+  }, RACE_MS + 120);
+}
+
+startRace.addEventListener("click", runRace);
+
+toRace.addEventListener("click", () => {
+  document.querySelector("#race").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  window.setTimeout(runRace, reduceMotion ? 0 : 600);
+});
+
+/* ---------- Bong bóng thoại ---------- */
 
 const quotes = [
-  "Gáp thêm 1 tuổi = thêm 1 phần lasagna. Luật rồi.",
-  "Tuổi mới của Gáp: ngủ nhiều hơn, ăn ngon hơn, thứ Hai ít hơn.",
-  "Hôm nay ai gọi Gáp dậy sớm là bị kick khỏi guild nha.",
-  "Gáp không béo, Gáp đang tích năng lượng cho tuổi mới.",
-  "CoHonTeam tuyên bố: hôm nay Gáp là boss.",
-  "Ước gì cũng được, trừ ước có thêm thứ Hai.",
-  "Mèo cam xịn nhất guild? Chú Gáp chứ ai.",
-  "GarfXX dùng skill: ĐỚP! Hiệu quả rất cao.",
-  "Gáp nhìn bánh lasagna sinh nhật: “Anh thích skin này.”",
+  "Bảng chủ hôm nay chạy đường nào cũng về nhất.",
+  "Tỉ lệ SSR hôm nay: 100%, riêng cho Riku-san.",
+  "Trainer ơi, thêm một tuổi là thêm một kỹ năng mới đó!",
+  "CoHonTeam tuyên bố: hôm nay cả guild nghỉ cày, đi ăn sinh nhật.",
+  "Stamina có thể hết, chứ niềm vui của bảng chủ thì không.",
+  "Deadline đuổi hoài không kịp bảng chủ đâu.",
+  "Chúc chị tuổi mới luôn đứng trên bục nhận cúp 🏆",
 ];
 let lastQuote = -1;
 
-pardy.addEventListener("click", () => {
+photo.addEventListener("click", () => {
   let index;
   do {
     index = Math.floor(Math.random() * quotes.length);
@@ -214,68 +235,35 @@ pardy.addEventListener("click", () => {
   bubble.textContent = quotes[index];
   bubble.classList.add("is-visible");
   window.clearTimeout(bubbleTimer);
-  bubbleTimer = window.setTimeout(() => bubble.classList.remove("is-visible"), 3200);
+  bubbleTimer = window.setTimeout(() => bubble.classList.remove("is-visible"), 3400);
 });
 
-/* ---------- Nhiệm vụ phụ: nút thứ Hai chạy trốn ---------- */
+/* ---------- Gacha: lúc nào cũng nổ SSR ---------- */
 
-const MAX_TRIES = 7;
-const missionLines = [
-  "Gáp né được rồi 😼",
-  "Lại hụt! Mèo cam phản xạ nhanh lắm.",
-  "Gáp: “Hôm nay sinh nhật, không dậy.”",
-  "Thất bại lần 4. Guild bắt đầu lo lắng.",
-  "Gáp đã trùm chăn kín mít.",
-  "Còn một cơ hội cuối…",
+const gachaLines = [
+  "SSR ★★★ — BẢNG CHỦ RIKU SAN! Cả guild hú hét.",
+  "Lại SSR nữa! Nhân phẩm ngày sinh nhật là có thật.",
+  "SSR ★★★ — thẻ ước về tay, khỏi cần quay lại.",
+  "Thêm một SSR nữa. Trainer khác nhìn mà ganh tị.",
+  "SSR ★★★ — hôm nay bảng chủ quay gì cũng trúng.",
 ];
-let tries = 0;
+let pulls = 0;
 
-function dodge() {
-  if (tries >= MAX_TRIES) return;
-  tries += 1;
+pullGacha.addEventListener("click", () => {
+  if (pullGacha.disabled) return;
+  pulls += 1;
+  pullGacha.disabled = true;
+  gachaStage.classList.remove("is-revealed");
+  gachaStatus.textContent = "Đang quay…";
 
-  if (tries >= MAX_TRIES) {
-    mondayButton.classList.add("is-tired");
-    mondayButton.textContent = "😴 THÔI ĐỂ GÁP NGỦ";
-    mondayButton.style.left = "50%";
-    mondayButton.style.top = "50%";
-    missionStatus.textContent = "Nhiệm vụ thất bại. Sinh nhật mà, cho Gáp ngủ tiếp!";
-    return;
-  }
-
-  const arena = missionArena.getBoundingClientRect();
-  const button = mondayButton.getBoundingClientRect();
-  const minX = button.width / 2 + 6;
-  const maxX = arena.width - button.width / 2 - 6;
-  const minY = button.height / 2 + 6;
-  const maxY = arena.height - button.height / 2 - 6;
-  const currentX = button.left - arena.left + button.width / 2;
-  const currentY = button.top - arena.top + button.height / 2;
-
-  let x;
-  let y;
-  let attempts = 0;
-  do {
-    x = minX + Math.random() * Math.max(maxX - minX, 0);
-    y = minY + Math.random() * Math.max(maxY - minY, 0);
-    attempts += 1;
-  } while (Math.hypot(x - currentX, y - currentY) < 60 && attempts < 20);
-
-  mondayButton.style.left = `${x}px`;
-  mondayButton.style.top = `${y}px`;
-  missionStatus.textContent = missionLines[tries - 1];
-}
-
-mondayButton.addEventListener("pointerenter", (event) => {
-  if (event.pointerType === "mouse") dodge();
-});
-
-mondayButton.addEventListener("click", () => {
-  if (tries >= MAX_TRIES) {
-    showToast("Gáp: “Zzz… sinh nhật vui vẻ nha anh em…”");
-  } else {
-    dodge();
-  }
+  window.setTimeout(() => {
+    gachaStage.classList.add("is-revealed");
+    gachaStatus.textContent = gachaLines[(pulls - 1) % gachaLines.length];
+    gachaCount.textContent = `Đã quay: ${pulls} lần`;
+    pullGacha.textContent = "🎟️ QUAY TIẾP";
+    pullGacha.disabled = false;
+    createBurst(window.innerWidth * 0.7, window.innerHeight * 0.45, 50);
+  }, reduceMotion ? 50 : 700);
 });
 
 /* ---------- Thanh chỉ số chạy khi cuộn tới ---------- */
@@ -292,7 +280,7 @@ if ("IntersectionObserver" in window) {
   stats.classList.add("is-filled");
 }
 
-/* ---------- Thiệp ---------- */
+/* ---------- Thư chúc ---------- */
 
 function setModal(open) {
   wishModal.classList.toggle("is-open", open);
@@ -300,7 +288,7 @@ function setModal(open) {
   document.body.style.overflow = open ? "hidden" : "";
   if (open) {
     closeWish.focus();
-    fireworkShow();
+    confettiShow();
   } else {
     openWish.focus();
   }
@@ -314,7 +302,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && wishModal.classList.contains("is-open")) setModal(false);
 });
 
-/* ---------- Ngủ trưa khi để yên ---------- */
+/* ---------- Nghỉ giữa hiệp khi để yên ---------- */
 
 const NAP_AFTER_MS = 25000;
 let napTimer;
@@ -352,7 +340,7 @@ resizeCanvas();
 window.addEventListener("load", () => {
   if (reduceMotion) return;
   window.setTimeout(() => {
-    createBurst(window.innerWidth * 0.78, window.innerHeight * 0.25, 55);
-    createBurst(window.innerWidth * 0.25, window.innerHeight * 0.33, 45);
-  }, 650);
+    createBurst(window.innerWidth * 0.75, window.innerHeight * 0.28, 55);
+    createBurst(window.innerWidth * 0.26, window.innerHeight * 0.34, 45);
+  }, 600);
 });
