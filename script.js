@@ -218,10 +218,11 @@ const quotes = [
   "Bang chủ hôm nay chạy đường nào cũng về nhất.",
   "Tỉ lệ SSR hôm nay: 100%, riêng cho Riku-san.",
   "Trainer ơi, thêm một tuổi là thêm một kỹ năng mới đó!",
-  "CoHonTeam tuyên bố: hôm nay cả guild nghỉ cày, đi ăn sinh nhật.",
+  "CoHonCave tuyên bố: hôm nay cả guild nghỉ cày, đi ăn sinh nhật.",
   "Stamina có thể hết, chứ niềm vui của bang chủ thì không.",
   "Deadline đuổi hoài không kịp bang chủ đâu.",
   "Chúc chị tuổi mới luôn đứng trên bục nhận cúp 🏆",
+  "“Hello anh em, lại là Riku đây” — câu quen thuộc nhất CoHonCave.",
 ];
 let lastQuote = -1;
 
