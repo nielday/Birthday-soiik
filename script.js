@@ -33,7 +33,7 @@ const colors = ["#ff6fa5", "#ffc53a", "#3d8fe0", "#4fae63", "#ffffff", "#ff9f43"
 /* ---------- Dòng chữ theo thứ trong tuần ---------- */
 
 if (new Date().getDay() === 1) {
-  document.querySelector("#dayLine").textContent = "HÔM NAY LÀ THỨ HAI, NHƯNG BẢNG CHỦ ĐƯỢC NGHỈ";
+  document.querySelector("#dayLine").textContent = "HÔM NAY LÀ THỨ HAI, NHƯNG BANG CHỦ ĐƯỢC NGHỈ";
 }
 
 /* ---------- Confetti ---------- */
@@ -151,7 +151,7 @@ function showToast(message) {
   toastTimer = window.setTimeout(() => toast.classList.remove("is-visible"), 2800);
 }
 
-/* ---------- Cuộc đua: bảng chủ luôn về nhất ---------- */
+/* ---------- Cuộc đua: bang chủ luôn về nhất ---------- */
 
 const RACE_MS = 2600;
 let racing = false;
@@ -178,7 +178,7 @@ function runRace() {
 
   startRace.disabled = true;
   startRace.textContent = "🏃 ĐANG CHẠY…";
-  raceStatus.textContent = "Cổng mở! Bảng chủ bứt tốc ngay từ khúc cua đầu tiên…";
+  raceStatus.textContent = "Cổng mở! Bang chủ bứt tốc ngay từ khúc cua đầu tiên…";
   course.classList.add("is-racing");
 
   const finish = course.clientWidth - 110;
@@ -201,7 +201,7 @@ function runRace() {
     startRace.textContent = "🔁 ĐUA LẠI";
     racing = false;
     confettiShow();
-    showToast("1着 — Chúc mừng sinh nhật bảng chủ! 🎉");
+    showToast("1着 — Chúc mừng sinh nhật bang chủ! 🎉");
   }, RACE_MS + 120);
 }
 
@@ -215,12 +215,12 @@ toRace.addEventListener("click", () => {
 /* ---------- Bong bóng thoại ---------- */
 
 const quotes = [
-  "Bảng chủ hôm nay chạy đường nào cũng về nhất.",
+  "Bang chủ hôm nay chạy đường nào cũng về nhất.",
   "Tỉ lệ SSR hôm nay: 100%, riêng cho Riku-san.",
   "Trainer ơi, thêm một tuổi là thêm một kỹ năng mới đó!",
   "CoHonTeam tuyên bố: hôm nay cả guild nghỉ cày, đi ăn sinh nhật.",
-  "Stamina có thể hết, chứ niềm vui của bảng chủ thì không.",
-  "Deadline đuổi hoài không kịp bảng chủ đâu.",
+  "Stamina có thể hết, chứ niềm vui của bang chủ thì không.",
+  "Deadline đuổi hoài không kịp bang chủ đâu.",
   "Chúc chị tuổi mới luôn đứng trên bục nhận cúp 🏆",
 ];
 let lastQuote = -1;
@@ -241,11 +241,11 @@ photo.addEventListener("click", () => {
 /* ---------- Gacha: lúc nào cũng nổ SSR ---------- */
 
 const gachaLines = [
-  "SSR ★★★ — BẢNG CHỦ RIKU SAN! Cả guild hú hét.",
+  "SSR ★★★ — BANG CHỦ RIKU SAN! Cả guild hú hét.",
   "Lại SSR nữa! Nhân phẩm ngày sinh nhật là có thật.",
   "SSR ★★★ — thẻ ước về tay, khỏi cần quay lại.",
   "Thêm một SSR nữa. Trainer khác nhìn mà ganh tị.",
-  "SSR ★★★ — hôm nay bảng chủ quay gì cũng trúng.",
+  "SSR ★★★ — hôm nay bang chủ quay gì cũng trúng.",
 ];
 let pulls = 0;
 
